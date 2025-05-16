@@ -1,0 +1,75 @@
+import pygame
+import pymunk
+
+pygame.init()
+
+WIDTH, HEIGHT = 800, 600
+screen = pygame.display.set_mode((WIDTH, HEIGHT))
+
+
+space = pymunk.Space()
+space.gravity = (0, 500)
+
+peg_rows = 10
+peg_spacing = 52
+start_x = 150
+start_y = 100
+pegs = []
+for row in range(peg_rows):
+    for i in range(row + 1):
+        x = start_x + i * peg_spacing + (peg_spacing / 2 * (peg_rows - row - 1))
+        y = start_y + row * peg_spacing
+        body = pymunk.Body(1, 100, body_type=pymunk.Body.STATIC)
+        body.position = (x, y)
+        shape = pymunk.Circle(body, 5)
+        shape.elasticity = 0.9
+        space.add(body, shape)
+        pegs.append(shape)
+
+def create_ball(pos):
+    body = pymunk.Body(1, 10)
+    body.position = pos  
+    shape = pymunk.Circle(body, 7)
+    shape.elasticity = 0.7
+    shape.density = 1
+    space.add(body, shape)
+    return shape
+
+balls = []
+clock = pygame.time.Clock()
+running = True
+
+while running:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            mouse_pos = pygame.mouse.get_pos()  
+            balls.append(create_ball(mouse_pos))  
+
+    screen.fill((255, 255, 255))
+
+    for peg in pegs:
+        pygame.draw.circle(screen, (0, 0, 0), (int(peg.body.position.x), int(peg.body.position.y)), 5)
+
+    for ball in balls:
+        pygame.draw.circle(screen, (0, 0, 255), (int(ball.body.position.x), int(ball.body.position.y)), 7)
+
+    space.step(1/60.0)
+    pygame.display.flip()
+    clock.tick(60)
+
+pygame.quit()
+задание №3 часть 2.py
+Displaying задание №3 часть 2.py.
+Задание 3
+Nicko S
+•
+Apr 25
+Due Yesterday
+Выполнить код по инструкции.
+https://rutube.ru/video/73bcd7786574fb45b160c1f9dd4fe6dd/?r=wd
+Сдать необходимо 2 программы
+1) Программа демонстрирующее нормальное распределение
+2) Программа демонстрирующее какое либо интересное явление (На ваше усмотрение)
+Class comments
