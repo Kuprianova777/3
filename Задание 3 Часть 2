@@ -58,18 +58,3 @@ while running:
     space.step(1/60.0)
     pygame.display.flip()
     clock.tick(60)
-
-pygame.quit()
-задание №3 часть 2.py
-Displaying задание №3 часть 2.py.
-Задание 3
-Nicko S
-•
-Apr 25
-Due Yesterday
-Выполнить код по инструкции.
-https://rutube.ru/video/73bcd7786574fb45b160c1f9dd4fe6dd/?r=wd
-Сдать необходимо 2 программы
-1) Программа демонстрирующее нормальное распределение
-2) Программа демонстрирующее какое либо интересное явление (На ваше усмотрение)
-Class comments
